@@ -95,7 +95,8 @@ class SoundButtonPlatform {
       if (data.soundPlayer !== undefined) {
         accessory.context.soundPlayer = data.soundPlayer;
       } else {
-        accessory.context.soundPlayer = '';
+        // Change default sound player to mpg321
+        accessory.context.soundPlayer = '/usr/bin/mpg321';
       }
 
       this.setService(accessory);
@@ -128,7 +129,8 @@ class SoundButtonPlatform {
       if (data.soundPlayer !== undefined) {
         accessory.context.soundPlayer = data.soundPlayer;
       } else {
-        accessory.context.soundPlayer = '/usr/bin/omxplayer';
+        // Change default sound player to mpg321
+        accessory.context.soundPlayer = '/usr/bin/mpg321';
       }
 
       accessory.getService(Service.AccessoryInformation)
@@ -164,6 +166,9 @@ class SoundButtonPlatform {
 
       if (thisPlug.soundPlayer !== undefined && thisPlug.soundPlayer !== '') {
         playerSoundPlayer = thisPlug.soundPlayer;
+      } else {
+        // Change default sound player to mpg321
+        playerSoundPlayer = '/usr/bin/mpg321';
       }
 
       this.pdebug('Sound Player: ' + playerSoundPlayer);
@@ -175,4 +180,5 @@ class SoundButtonPlatform {
       if (this.debugging) {
         this.pdebug('Player Options: ' + _playerSoundOptions);
         this.pdebug('Player File: ' + thisPlug.soundFile);
-        this.pdebug('Player Command: ' + playerSoundPlayer + ' ' +  _playerSoundOptions
+        this.pdebug('Player Command: ' + playerSoundPlayer + ' ' +  _playerSoundOptions);
+        this.pdebug('******* Launching PID .... ' + thisPlug.playProcess.pid
